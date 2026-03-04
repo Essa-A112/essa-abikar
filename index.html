@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essa Abikar</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #fafaf8;
+  --ink: #1a1a18;
+  --ink-mid: #4a4a46;
+  --ink-faint: #9a9a94;
+  --rule: #e2e2dc;
+  --accent: #2a5c45;
+  --accent-light: #e8f0ec;
+  --serif: 'Libre Baskerville', Georgia, serif;
+  --sans: 'Karla', sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 5vw;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.hero {
+  padding: 140px 5vw 100px;
+  max-width: 860px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: rise 0.7s 0.1s forwards;
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: rise 0.7s 0.25s forwards;
+}
+
+.hero-name em {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-mid);
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  max-width: 60ch;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: rise 0.7s 0.4s forwards;
+}
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: rise 0.7s 0.55s forwards;
+}
+
+.chip {
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--rule);
+  color: var(--ink-mid);
+}
+
+.chip.green {
+  background: var(--accent-light);
+  border-color: transparent;
+  color: var(--accent);
+}
+
+.section {
+  padding: 80px 5vw;
+  max-width: 860px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-text p {
+  color: var(--ink-mid);
+  margin-bottom: 1.1rem;
+  font-size: 0.97rem;
+}
+
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.aside-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+
+.aside-line {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+.aside-line strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+.project-list { display: flex; flex-direction: column; }
+
+.project-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-row:last-child { border-bottom: 1px solid var(--rule); }
+.project-row:hover .project-title { color: var(--accent); }
+
+.project-tag-row {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.45rem;
+}
+
+.project-title {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+  line-height: 1.35;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  max-width: 56ch;
+  line-height: 1.7;
+}
+
+.project-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.tag {
+  font-size: 0.67rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--rule);
+  padding: 0.2rem 0.55rem;
+  white-space: nowrap;
+}
+
+.link-arrow {
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  margin-top: 0.4rem;
+  white-space: nowrap;
+}
+
+.link-arrow:hover { text-decoration: underline; }
+
+.pub-item {
+  padding: 2rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.pub-item:last-child { border-bottom: 1px solid var(--rule); }
+
+.pub-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+
+.pub-authors {
+  font-size: 0.84rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin-bottom: 0.3rem;
+}
+
+.pub-venue {
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.7rem;
+}
+
+.pub-link {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-light);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+
+.pub-link:hover { border-bottom-color: var(--accent); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.skill-group-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.skill-items li {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.skill-items li::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background: var(--rule);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contact-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact-text p {
+  font-size: 0.97rem;
+  color: var(--ink-mid);
+  margin-bottom: 1.5rem;
+  max-width: 44ch;
+}
+
+.contact-email {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.contact-email:hover { border-bottom-color: var(--ink); }
+
+.contact-links { display: flex; flex-direction: column; }
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-row:first-child { border-top: 1px solid var(--rule); }
+.contact-row:hover .contact-row-name { color: var(--accent); }
+
+.contact-row-name {
+  font-size: 0.85rem;
+  color: var(--ink);
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.contact-row-handle {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+footer {
+  padding: 2.5rem 5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+footer span {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .hero { padding: 100px 5vw 60px; }
+  .about-body { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .contact-body { grid-template-columns: 1fr; gap: 2.5rem; }
+  .project-row { grid-template-columns: 1fr; }
+  .project-stack { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Essa Abikar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Engineer &amp; Data Scientist</div>
+  <h1 class="hero-name">Essa<br><em>Abikar</em></h1>
+  <p class="hero-bio">
+    Mechanical engineer with an MSc in Robotics from King's College London. I apply engineering rigour to data science, quantitative analysis, and financial systems. I am looking for roles at the intersection of data, finance, and infrastructure.
+  </p>
+  <div class="hero-chips">
+    <span class="chip green">Data Science</span>
+    <span class="chip green">Quantitative Analysis</span>
+    <span class="chip">MSc Robotics, KCL</span>
+    <span class="chip">BEng Mechanical Engineering</span>
+    <span class="chip">London, UK</span>
+  </div>
+</div>
+
+<section class="section" id="about">
+  <div class="section-label">About</div>
+  <div class="about-body">
+    <div class="about-text reveal">
+      <p>
+        I am a mechanical engineer by training with a strong foundation in quantitative methods, machine learning, and data-driven decision making. My MSc thesis at King's College London, which earned a distinction, focused on AI-powered investment decision support using machine learning with an emphasis on model explainability.
+      </p>
+      <p>
+        I co-authored peer-reviewed research on thermodynamic modelling of high-temperature heat pump systems, published in Springer conference proceedings. I have also applied engineering thinking in industry through my work at Kirfu, an AI logistics startup.
+      </p>
+      <p>
+        I volunteer with Engineers Without Borders and the Haya Community Centre, applying technical skills to community development. I am actively pursuing roles in data science, quantitative finance, and financial engineering.
+      </p>
+    </div>
+    <div class="about-aside reveal">
+      <div>
+        <div class="aside-title">Education</div>
+        <div class="aside-line">
+          <strong>MSc Robotics</strong>
+          King's College London<br>Thesis distinction
+        </div>
+        <div class="aside-line" style="margin-top:0.8rem">
+          <strong>BEng Mechanical Engineering, 2:1</strong>
+          City University London
+        </div>
+      </div>
+      <div>
+        <div class="aside-title">Focus Areas</div>
+        <div class="aside-line">Data science, quantitative analysis, financial systems, machine learning explainability, agent-based modelling</div>
+      </div>
+      <div>
+        <div class="aside-title">Interests</div>
+        <div class="aside-line">Finance, infrastructure, sustainable engineering, community development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-label">Projects</div>
+  <div class="project-list">
+
+    <div class="project-row reveal">
+      <div>
+        <div class="project-tag-row">MSc Thesis &mdash; King's College London</div>
+        <div class="project-title">AI-Powered Investment Decision Support</div>
+        <div class="project-desc">Built and evaluated machine learning models for investment decision support. Used XAI techniques to make model outputs transparent and interpretable for financial decision makers. Thesis received a distinction.</div>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">ML</span>
+        <span class="tag">XAI</span>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div>
+        <div class="project-tag-row">Research &mdash; Thermodynamics</div>
+        <div class="project-title">Compressor Selection in High-Temperature Heat Pump Systems</div>
+        <div class="project-desc">Co-authored peer-reviewed research modelling thermodynamic performance and compressor selection strategies for high-temperature heat pump applications. Published in Springer conference proceedings.</div>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Thermodynamics</span>
+        <span class="tag">Modelling</span>
+        <a href="https://link.springer.com/chapter/10.1007/978-3-032-04102-9_42" target="_blank" class="link-arrow">View paper &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div>
+        <div class="project-tag-row">Learning Project &mdash; Agent-Based Modelling</div>
+        <div class="project-title">SIR Disease Propagation Simulation</div>
+        <div class="project-desc">A personal project built to learn agent-based modelling techniques. Implemented a SIR epidemiological model in Python using Mesa, including animated simulations and parameter sweeps to explore how contagion spreads across agent networks.</div>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">Mesa</span>
+        <span class="tag">ABM</span>
+        <a href="https://github.com/Essa-A112" target="_blank" class="link-arrow">GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-row reveal">
+      <div>
+        <div class="project-tag-row">Industry &mdash; AI Startup</div>
+        <div class="project-title">AI Logistics Systems at Kirfu</div>
+        <div class="project-desc">Applied machine learning to supply chain and logistics optimisation at an early-stage AI startup. Contributed to system design and the deployment of data-driven tools in operational environments.</div>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">ML</span>
+        <span class="tag">Logistics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="publications">
+  <div class="section-label">Publications</div>
+  <div class="pub-item reveal">
+    <div class="pub-title">Compressor Selection Strategies for High-Temperature Heat Pump Systems: A Thermodynamic Modelling Approach</div>
+    <div class="pub-authors">Abikar, E. et al.</div>
+    <div class="pub-venue">Springer Conference Proceedings &mdash; peer-reviewed</div>
+    <a href="https://link.springer.com/chapter/10.1007/978-3-032-04102-9_42" target="_blank" class="pub-link">View on Springer &rarr;</a>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-label">Skills</div>
+  <div class="skills-grid">
+    <div class="reveal">
+      <div class="skill-group-title">Data &amp; ML</div>
+      <ul class="skill-items">
+        <li>Python</li>
+        <li>Pandas / NumPy</li>
+        <li>Scikit-learn</li>
+        <li>Machine Learning</li>
+        <li>Explainability (XAI)</li>
+        <li>Agent-Based Modelling</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-title">Engineering</div>
+      <ul class="skill-items">
+        <li>Mechanical Design</li>
+        <li>Thermodynamic Modelling</li>
+        <li>Robotics Systems</li>
+        <li>MATLAB</li>
+        <li>CAD / FEA</li>
+        <li>ROS</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="skill-group-title">Analytical</div>
+      <ul class="skill-items">
+        <li>Quantitative Analysis</li>
+        <li>Financial Modelling</li>
+        <li>Research Methods</li>
+        <li>Academic Writing</li>
+        <li>Data Visualisation</li>
+        <li>Systems Thinking</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-body">
+    <div class="contact-text reveal">
+      <p>Open to data science, quantitative analysis, and financial engineering roles. Feel free to reach out directly.</p>
+      <a href="mailto:essaabikar12@gmail.com" class="contact-email">essaabikar12@gmail.com</a>
+    </div>
+    <div class="contact-links reveal">
+      <a href="https://github.com/Essa-A112" target="_blank" class="contact-row">
+        <span class="contact-row-name">GitHub</span>
+        <span class="contact-row-handle">Essa-A112</span>
+      </a>
+      <a href="https://www.linkedin.com/in/essaabikar/" target="_blank" class="contact-row">
+        <span class="contact-row-name">LinkedIn</span>
+        <span class="contact-row-handle">essaabikar</span>
+      </a>
+      <a href="mailto:essaabikar12@gmail.com" class="contact-row">
+        <span class="contact-row-name">Email</span>
+        <span class="contact-row-handle">essaabikar12@gmail.com</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Essa Abikar</span>
+  <span>London, UK</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
