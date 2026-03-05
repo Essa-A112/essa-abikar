@@ -123,7 +123,9 @@ nav {
 
 /* CAROUSEL */
 .carousel-wrap { width: 100%; margin-top: 1.2rem; }
-.carousel { overflow: hidden; border: 1px solid var(--rule); background: #efefed; }
+.carousel { overflow: hidden; border: 1px solid var(--rule); background: #efefed; width: 100%; }
+.carousel-track { display: flex; transition: transform 0.38s ease; width: 100%; }
+.carousel-slide { flex-shrink: 0; width: 100%; min-width: 100%; }
 .carousel-track { display: flex; transition: transform 0.38s ease; }
 .carousel-slide { flex-shrink: 0; width: 100%; }
 .carousel-slide img { width: 100%; height: auto; display: block; }
