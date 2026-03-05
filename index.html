@@ -257,24 +257,25 @@ footer span { font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.04e
     </div>
   </div>
 
-  <section class="section" id="about">
+<section class="section" id="about">
   <div class="section-label">About</div>
   <div class="about-body">
     <div class="about-text reveal">
       <p>I am a mechanical engineer by training with a strong foundation in quantitative methods, machine learning, and data-driven decision making. My MSc thesis at King's College London earned a distinction and focused on AI-powered investment decision support using machine learning with an emphasis on model explainability.</p>
       <p>I co-authored peer-reviewed research on thermodynamic modelling of high-temperature heat pump systems, published in Springer conference proceedings. I have also applied engineering thinking in industry through my work at Kirfu, an AI logistics startup.</p>
       <p>I volunteer with Engineers Without Borders and the Haya Community Centre, applying technical skills to community development.</p>
+
       <div style="margin-top:2rem;">
         <div class="aside-title" style="margin-bottom:1.2rem;">Education</div>
         <div class="timeline">
 
-          <!-- KCL -->
+          <!-- MSc -->
           <div class="timeline-item">
-            <div class="timeline-header">
+            <div class="timeline-header" style="display:flex; align-items:center; gap:1rem;">
               <img
-                src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/King%27s_College_London_logo.svg/200px-King%27s_College_London_logo.svg.png"
-                alt="King's College London logo"
-                class="timeline-logo"
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/King%27s_College_London_logo.svg/1200px-King%27s_College_London_logo.svg.png"
+                alt="King's College London"
+                style="height:36px; width:auto; object-fit:contain; flex-shrink:0;"
               />
               <div>
                 <div class="timeline-year">2024 — 2025</div>
@@ -283,46 +284,64 @@ footer span { font-size: 0.75rem; color: var(--ink-faint); letter-spacing: 0.04e
                 <div class="timeline-note">Distinction</div>
               </div>
             </div>
-            <button class="timeline-toggle" onclick="toggleDetails(this)" aria-expanded="false">
-              Show details
-            </button>
-            <div class="timeline-details" hidden>
-              <p>Relevant areas: Intelligent systems, machine learning, robot kinematics and motion planning.</p>
-              <p>Thesis (Distinction): <em>AI-Powered Investment Decision Support for Care Home Real Estate using Explainable AI and Large Language Models</em></p>
-            </div>
+            <details style="margin-top:0.75rem; padding-left:0.25rem;">
+              <summary style="cursor:pointer; font-size:0.85rem; opacity:0.6; list-style:none; display:inline-flex; align-items:center; gap:0.3rem; user-select:none;">
+                <span class="details-toggle-text">See details</span>
+              </summary>
+              <div style="margin-top:0.6rem; font-size:0.88rem; line-height:1.6; opacity:0.75;">
+                <p style="margin:0 0 0.4rem 0;">Thesis: AI-powered investment decision support system using machine learning, with a focus on model explainability (XAI) to make predictions interpretable for end users.</p>
+                <p style="margin:0 0 0.4rem 0;">Key modules: Advanced Robotics, Machine Learning for Robotics, Computer Vision, Human-Robot Interaction, Autonomous Systems.</p>
+                <p style="margin:0;">Co-authored peer-reviewed paper on thermodynamic modelling of high-temperature heat pump systems, published in Springer conference proceedings.</p>
+              </div>
+            </details>
           </div>
 
-          <!-- City -->
+          <!-- BEng -->
           <div class="timeline-item">
-            <div class="timeline-header">
+            <div class="timeline-header" style="display:flex; align-items:center; gap:1rem;">
               <img
-                src="https://upload.wikimedia.org/wikipedia/en/thumb/6/62/City%2C_University_of_London_logo.svg/200px-City%2C_University_of_London_logo.svg.png"
-                alt="City University of London logo"
-                class="timeline-logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/City%2C_University_of_London_logo.svg/1200px-City%2C_University_of_London_logo.svg.png"
+                alt="City University London"
+                style="height:36px; width:auto; object-fit:contain; flex-shrink:0;"
               />
               <div>
                 <div class="timeline-year">2020 — 2024</div>
                 <div class="timeline-degree">BEng Mechanical Engineering</div>
                 <div class="timeline-school">City University London</div>
-                <div class="timeline-note">Upper Second Class (2:1)</div>
               </div>
             </div>
-            <button class="timeline-toggle" onclick="toggleDetails(this)" aria-expanded="false">
-              Show details
-            </button>
-            <div class="timeline-details" hidden>
-              <p>Relevant areas: Thermodynamics, fluid mechanics, mechatronics and control, mechanical design.</p>
-              <p>Thesis (84%): <em>Thermodynamic Analysis of High-Temperature Heat Pumps for Industrial Waste Heat Recovery</em></p>
-              <p>Co-authored peer-reviewed research on compressor selection in high-temperature heat pump systems, published in Springer conference proceedings.</p>
-            </div>
+            <details style="margin-top:0.75rem; padding-left:0.25rem;">
+              <summary style="cursor:pointer; font-size:0.85rem; opacity:0.6; list-style:none; display:inline-flex; align-items:center; gap:0.3rem; user-select:none;">
+                <span class="details-toggle-text">See details</span>
+              </summary>
+              <div style="margin-top:0.6rem; font-size:0.88rem; line-height:1.6; opacity:0.75;">
+                <p style="margin:0 0 0.4rem 0;">Four-year accredited BEng programme covering thermodynamics, fluid mechanics, structural analysis, control systems, and materials science.</p>
+                <p style="margin:0 0 0.4rem 0;">Developed strong quantitative and computational skills through modules in engineering mathematics, CAD modelling, and finite element analysis.</p>
+                <p style="margin:0;">Final year project applied thermodynamic principles to heat pump system design, forming the basis of subsequent published research.</p>
+              </div>
+            </details>
           </div>
 
         </div>
       </div>
     </div>
+
     <div class="about-aside reveal">
       <div>
-        <div class="aside-title">Foc
+        <div class="aside-title">Focus Areas</div>
+        <div class="aside-line">Data science, quantitative analysis, financial systems, machine learning explainability, agent-based modelling</div>
+      </div>
+      <div>
+        <div class="aside-title">Interests</div>
+        <div class="aside-line">Finance, infrastructure, sustainable engineering, community development</div>
+      </div>
+      <div>
+        <div class="aside-title">Location</div>
+        <div class="aside-line">London, UK</div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section class="section" id="projects">
     <div class="section-label">Projects</div>
